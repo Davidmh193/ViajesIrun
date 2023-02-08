@@ -63,8 +63,54 @@ public class FormularioDeDatos {
 
 	}
 	
-	private static void AnularReserva(){
+	
+	public static void InsertarDatosHotel(String Hoteles) {
+		Hoteles hoteles=  new Hoteles();
+		hoteles.setId(Integer.parseInt(JOptionPane.showInputDialog(null, "Introduce la id del Hotel")));
+		hoteles.setCif(JOptionPane.showInputDialog(null, "Introduce el Cif del Hotel"));
+		hoteles.setNombre(JOptionPane.showInputDialog(null, "Introduce el Nombre del Cliente"));
+		hoteles.setGerente(JOptionPane.showInputDialog(null, "Introduce la Nombre del Gerente"));
+		hoteles.setEstrella(Integer.parseInt(JOptionPane.showInputDialog(null, "Introduce la Localidad del Cliente")));
+		hoteles.setCompania(JOptionPane.showInputDialog(null, "Introduce el Cif del Hotel"));
+
+		try {
+			if (insertarEnLaBBDD(hoteles)) {
+				System.out.println("Hotel insertado");
+			} else {
+				System.out.println("Error al insertar");
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	private static boolean insertarEnLaBBDD(Hoteles hoteles) {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection conexion = DriverManager.getConnection("jdbc:mysql://" + HOST + "/" + BBDD, USERNAME, PASSWORD);
+
+			String sql = "INSERT INTO hoteles(id, cif, nombre, gerente, estrellas, compania) VALUES (?, ?, ?, ?, ?, ?)";
+			PreparedStatement pst = conexion.prepareStatement(sql);
+			pst.setInt(1, hoteles.getId());
+			pst.setString(2, hoteles.getCif());
+			pst.setString(3, hoteles.getNombre());
+			pst.setString(4, hoteles.getGerente());
+			pst.setInt(5, hoteles.getEstrella());
+			pst.setString(6, hoteles.getCompania());
+			pst.execute();
+			return true;
 		
+
+		} catch (ClassNotFoundException e) {
+			System.out.println("Driver no cargado, falta el jar");
+			e.printStackTrace();
+			return false;
+		} catch (SQLException e) {
+			System.out.println("Fallo en la conexion");
+			e.printStackTrace();
+			return false;
+		}
+
 	}
 
 	

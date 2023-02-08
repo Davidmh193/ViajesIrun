@@ -26,7 +26,7 @@ public class Menu {
 			break;
 		//Realizar Reservas
 		case OPCION_DOS:
-			
+		
 			break;
 		//Anula la reserva
 		case OPCION_TRES:
@@ -34,8 +34,7 @@ public class Menu {
 			break;
 		// Se da de alta en el hotel
 		case OPCION_CUATRO:
-			
-			
+			Menu.RegistrarHoteles();
 			break;
 			
 		case SALIR:
@@ -70,6 +69,34 @@ public class Menu {
 				JOptionPane.showMessageDialog(null, "Opcion incorrecta");
 			}
 		} while (opcion_menu != SALIR);
+
+		
+		
+	}
+	public static void RegistrarHoteles() {
+		
+		final int OPCION_UNO = 1;
+		final int SALIR = 0;
+		int opcion_menu;
+		do {
+			opcion_menu = Integer.parseInt(JOptionPane.showInputDialog(null,
+					"------MENU-------\n" + OPCION_UNO + ". Darte de alta Hotel\n" + SALIR + ". Salir De Alta Clientes\n" + "Elije, la opcion a realizar"));
+			
+			switch (opcion_menu) {
+			// Registrar Clientes
+			case OPCION_UNO:
+				GestiondeHotel.Insertacionhoteles();
+				JOptionPane.showMessageDialog(null, "Hotel registrado");
+				break;
+				
+			case SALIR:
+				JOptionPane.showMessageDialog(null, "Adios");
+				break;
+			default:
+				JOptionPane.showMessageDialog(null, "Opcion incorrecta");
+			}
+		} while (opcion_menu != SALIR);
+
 		
 		
 	}
