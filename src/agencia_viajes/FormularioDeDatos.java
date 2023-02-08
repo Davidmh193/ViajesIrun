@@ -26,7 +26,7 @@ public class FormularioDeDatos {
 		
 		try {
 			if (insertarEnLaBBDD(cliente)) {
-				System.out.println("Libro insertado");
+				System.out.println("Cliente insertado");
 			} else {
 				System.out.println("Error al insertar");
 			}
@@ -61,6 +61,10 @@ public class FormularioDeDatos {
 			return false;
 		}
 
+	}
+	
+	private static void AnularReserva(){
+		
 	}
 
 	
