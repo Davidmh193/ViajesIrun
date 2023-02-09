@@ -5,4 +5,7 @@ public class GestiondeHotel {
 	public static void Insertacionhoteles(){
 		FormularioDeDatos.InsertarDatosHotel(null);
 	}
+	public static void InsertacionHabiatcion(){
+		FormularioDeDatos.InsertarDatosHabitaciones(null);
+	}
 }
