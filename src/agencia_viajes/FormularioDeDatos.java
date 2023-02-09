@@ -70,11 +70,11 @@ public class FormularioDeDatos {
 		hoteles.setCif(JOptionPane.showInputDialog(null, "Introduce el Cif del Hotel"));
 		hoteles.setNombre(JOptionPane.showInputDialog(null, "Introduce el Nombre del Cliente"));
 		hoteles.setGerente(JOptionPane.showInputDialog(null, "Introduce la Nombre del Gerente"));
-		hoteles.setEstrella(Integer.parseInt(JOptionPane.showInputDialog(null, "Introduce la Localidad del Cliente")));
+		hoteles.setEstrella(Integer.parseInt(JOptionPane.showInputDialog(null, "Introduce el NUMERO de ESTRELLAS del HOTEL")));
 		hoteles.setCompania(JOptionPane.showInputDialog(null, "Introduce el Cif del Hotel"));
 
 		try {
-			if (insertarEnLaBBDD(hoteles)) {
+			if (insertarEnLaBBDDD(hoteles)) {
 				System.out.println("Hotel insertado");
 			} else {
 				System.out.println("Error al insertar");
@@ -84,7 +84,7 @@ public class FormularioDeDatos {
 			e.printStackTrace();
 		}
 	}
-	private static boolean insertarEnLaBBDD(Hoteles hoteles) {
+	private static boolean insertarEnLaBBDDD(Hoteles hoteles) {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection conexion = DriverManager.getConnection("jdbc:mysql://" + HOST + "/" + BBDD, USERNAME, PASSWORD);

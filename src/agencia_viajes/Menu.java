@@ -33,8 +33,9 @@ public class Menu {
 			
 			break;
 		// Se da de alta en el hotel
-		case OPCION_CUATRO:
+		case OPCION_CUATRO: 
 			Menu.RegistrarHoteles();
+			//Funciona
 			break;
 			
 		case SALIR:
@@ -63,7 +64,6 @@ public class Menu {
 				break;
 				
 			case SALIR:
-				JOptionPane.showMessageDialog(null, "Adios");
 				break;
 			default:
 				JOptionPane.showMessageDialog(null, "Opcion incorrecta");
@@ -90,7 +90,7 @@ public class Menu {
 				break;
 				
 			case SALIR:
-				JOptionPane.showMessageDialog(null, "Adios");
+				
 				break;
 			default:
 				JOptionPane.showMessageDialog(null, "Opcion incorrecta");
