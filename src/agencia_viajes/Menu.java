@@ -2,6 +2,8 @@ package agencia_viajes;
 
 import javax.swing.JOptionPane;
 
+/**@DavidMangas **/
+
 public class Menu {
 	
 	//Menu Principal
@@ -138,11 +140,11 @@ public class Menu {
 			}
 		} while (opcion_menu != SALIR);
 		
-		
-
-		
-		
 	}
+	
+	
+/**************************************************************************************************************************************************************************************/
+	
 	public static void RealizarReservas() {
 		final int OPCION_UNO = 1;
 		final int SALIR = 0;
@@ -155,8 +157,7 @@ public class Menu {
 			//Comprueba el DNI 
 			case OPCION_UNO:
 				GestionDeReservas.ComprobadorDNI(null);
-				
-				
+
 			case SALIR:
 				break;
 			default:

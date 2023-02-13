@@ -17,6 +17,7 @@ public class GestionDeReservas {
 	
 	/**************************************************************************************************************************************************************************************/
 
+	//Comprueba si esta el DNI
 	public static void ComprobadorDNI(String Clientes) {
 		 Clientes dni=  new Clientes();
 		 dni.setDni(JOptionPane.showInputDialog(null, "Introduce la id del Cliente"));
@@ -51,7 +52,8 @@ public class GestionDeReservas {
 		}
 
 	}
-			
+	/**************************************************************************************************************************************************************************************/
+		
 	
 }
 	
