@@ -24,7 +24,7 @@ public class GestionDeReservas {
 					
 			if (buscadorEnLaBBDDD(dni)) {
 				JOptionPane.showMessageDialog(null, "Cliente encontrado");
-				GestiondeHotel.Insertacionhoteles();
+				Menu.RegistrarHoteles();
 			} else {
 				System.out.println("Error en la eliminacion");
 			}
