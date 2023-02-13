@@ -156,8 +156,8 @@ public class Menu {
 			case OPCION_UNO:
 				GestionDeReservas.ComprobadorDNI(null);
 				
+				
 			case SALIR:
-				JOptionPane.showMessageDialog(null, "Adios");
 				break;
 			default:
 				JOptionPane.showMessageDialog(null, "Opcion incorrecta");
