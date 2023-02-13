@@ -25,7 +25,7 @@ public class GestionDeReservas {
 					
 			if (buscadorEnLaBBDDD(dni)) {
 				JOptionPane.showMessageDialog(null, "Cliente encontrado");
-				Menu.RegistrarHoteles();
+				GestionDeReservas.ComprobadorHotel(Clientes);
 			} else {
 				System.out.println("Error en la eliminacion");
 			}
@@ -52,8 +52,51 @@ public class GestionDeReservas {
 		}
 
 	}
+	
 	/**************************************************************************************************************************************************************************************/
-		
+	public static void ComprobadorHotel(String Hoteles) {
+		Hoteles hoteles=  new Hoteles();
+		 hoteles.setId(Integer.parseInt(JOptionPane.showInputDialog(null, "Introduce el hotel a reservar")));
+		 
+					
+			if (buscadorEnLaBBDDD(hoteles)) {
+				JOptionPane.showMessageDialog(null, "Hotel encontrado");
+				
+			} else {
+				System.out.println("Error en la eliminacion");
+			}
+		}
+	private static boolean buscadorEnLaBBDDD(Hoteles hoteles) {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection conexion = DriverManager.getConnection("jdbc:mysql://" + HOST + "/" + BBDD, USERNAME, PASSWORD);
+
+			String sql = "SELECT * FROM hoteles WHERE id = ?";
+			PreparedStatement pst = conexion.prepareStatement(sql);
+			pst.setInt(1, hoteles.getId());
+			pst.execute();
+			return true;
+			
+		} catch (ClassNotFoundException e) {
+			System.out.println("Driver no cargado, falta el jar");
+			e.printStackTrace();
+			return false;
+		} catch (SQLException e) {
+			System.out.println("Fallo en la conexion");
+			e.printStackTrace();
+			return false;
+		}
+
+	}
+	
+	/**************************************************************************************************************************************************************************************/
+	
+	
+	
+	
+	
+	
+	
 	
 }
 	
