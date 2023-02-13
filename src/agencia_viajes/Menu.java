@@ -145,27 +145,17 @@ public class Menu {
 	}
 	public static void RealizarReservas() {
 		final int OPCION_UNO = 1;
-		final int OPCION_DOS = 2;
-		final int OPCION_TRES = 3;
 		final int SALIR = 0;
 		int opcion_menu;
 		do {
 			opcion_menu = Integer.parseInt(JOptionPane.showInputDialog(null,
-					"------MENU-------\n" + OPCION_UNO + ". Comprobador de DNI\n" + OPCION_DOS + ". segunda opcion\n"
-							+ OPCION_TRES + ". tercera opcion\n" + SALIR + ". Salir\n" + "Elije una de las opciones"));
+					"------MENU-------\n" + OPCION_UNO + ". Introduce el DNI\n" + SALIR + ". Salir\n" + "Elije una de las opciones"));
 			//fin menú
 			switch (opcion_menu) {
-			//Comprueba el dni 
+			//Comprueba el DNI 
 			case OPCION_UNO:
 				GestionDeReservas.ComprobadorDNI(null);
 				
-				break;
-			case OPCION_DOS:
-				JOptionPane.showMessageDialog(null, "segunda opcion seleccionada");
-				break;
-			case OPCION_TRES:
-				JOptionPane.showMessageDialog(null, "tercera opcion seleccionada");
-				break;
 			case SALIR:
 				JOptionPane.showMessageDialog(null, "Adios");
 				break;
