@@ -157,7 +157,6 @@ public class Menu {
 			//Comprueba el DNI 
 			case OPCION_UNO:
 				GestionDeReservas.ComprobadorDNI(null);
-
 			case SALIR:
 				break;
 			default:

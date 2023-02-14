@@ -64,7 +64,7 @@ public class GestionDeReservas extends Conector{
 					
 			if (buscadorEnLaBBDDD(hoteles)) {
 				JOptionPane.showMessageDialog(null, "Hotel encontrado");
-				GestionDeReservas.mostrarHotel(null);
+				
 			} else {
 				System.out.println("Error en la eliminacion");
 			}
@@ -119,7 +119,7 @@ public class GestionDeReservas extends Conector{
 			Statement st;
 			try {
 				
-				st = this.con.createStatement();
+				st = this.con.prepareStatement(null);
 				ResultSet rs = st.executeQuery("select * from hoteles");
 
 				Hoteles hotel;
