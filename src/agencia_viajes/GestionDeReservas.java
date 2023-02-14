@@ -3,11 +3,14 @@ package agencia_viajes;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
-public class GestionDeReservas {
+public class GestionDeReservas extends Conector{
 
 	private static final String HOST = "localhost";
 	private static final String BBDD = "agencia_viajes";
@@ -61,7 +64,7 @@ public class GestionDeReservas {
 					
 			if (buscadorEnLaBBDDD(hoteles)) {
 				JOptionPane.showMessageDialog(null, "Hotel encontrado");
-				
+				GestionDeReservas.mostrarHotel(null);
 			} else {
 				System.out.println("Error en la eliminacion");
 			}
@@ -91,11 +94,53 @@ public class GestionDeReservas {
 	
 	/**************************************************************************************************************************************************************************************/
 	
+	//Array List de Ver Las habitaciones 
 	
-	
-	
-	
-	
+		
+		public static void mostrarHotel(ArrayList<Hoteles> hoteles) {
+			for (Hoteles hotel : hoteles) {
+				System.out.println("Nombre del hotel "+hotel.getId());
+			}
+		}
+
+		/*public static void mostrarLibro(Hoteles hotel) {
+			System.out.println(hotel);
+		}
+
+		public static void mostrar(String mensaje) {
+			System.out.println(mensaje);
+		}*/
+		
+		
+		public ArrayList<Hoteles> getHoteles() {
+
+			
+			ArrayList<Hoteles> hoteles = new ArrayList<Hoteles>();
+			Statement st;
+			try {
+				
+				st = this.con.createStatement();
+				ResultSet rs = st.executeQuery("select * from hoteles");
+
+				Hoteles hotel;
+				while (rs.next()) {
+					hotel = new Hoteles();
+					hotel.setId(rs.getInt("id"));
+					hotel.setCif(rs.getString("cif"));
+					hotel.setNombre(rs.getString("nombre"));
+					hotel.setGerente(rs.getString("gerente"));
+					hotel.setEstrella(rs.getInt("estrellas"));
+					hotel.setCompania(rs.getString("compania"));
+					
+					
+					hoteles.add(hotel);
+				}
+				return hoteles;
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return null;
+		}
 	
 	
 }
