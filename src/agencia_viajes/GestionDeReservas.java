@@ -99,7 +99,7 @@ public class GestionDeReservas extends Conector{
 		
 		public static void mostrarHotel(ArrayList<Hoteles> hoteles) {
 			for (Hoteles hotel : hoteles) {
-				System.out.println("Nombre del hotel "+hotel.getId());
+				System.out.println("Nombre del hotel "+hotel);
 			}
 		}
 
