@@ -1,5 +1,7 @@
 package agencia_viajes;
 
+
+
 import javax.swing.JOptionPane;
 
 /**@DavidMangas **/
@@ -152,7 +154,7 @@ public class Menu {
 		int opcion_menu;
 		do {
 			opcion_menu = Integer.parseInt(JOptionPane.showInputDialog(null,
-					"------MENU-------\n" + OPCION_UNO + ". Introduce el DNI\n"+OPCION_DOS+". Ver hoteles\n" + SALIR + ". Salir\n" + "Elije una de las opciones"));
+					"------MENU-------\n" + OPCION_UNO + ". Introduce el DNI para registrar habitación\n"+OPCION_DOS+". Ver hoteles\n" + SALIR + ". Salir\n" + "Elije una de las opciones"));
 			//fin menú
 			switch (opcion_menu) {
 			//Comprueba el DNI 
@@ -160,7 +162,10 @@ public class Menu {
 				GestionDeReservas.ComprobadorDNI(null);
 				
 			case OPCION_DOS:
-				GestionDeReservas.mostrarHotel(null);
+				
+				/*ArrayList<Hoteles> TodosLosHoteles = new ArrayList<Hoteles>();
+				TodosLosHoteles = GestionDeReservas.getHoteles();*/
+				
 				break;
 			case SALIR:
 				break;

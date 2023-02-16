@@ -1,6 +1,7 @@
 package agencia_viajes;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,6 +18,8 @@ public class GestionDeReservas extends Conector{
 	private static final String USERNAME = "root";
 	private static final String PASSWORD = "";
 	
+	Conector conector = new Conector();
+	
 	
 	/**************************************************************************************************************************************************************************************/
 
@@ -29,6 +32,8 @@ public class GestionDeReservas extends Conector{
 			if (buscadorEnLaBBDDD(dni)) {
 				JOptionPane.showMessageDialog(null, "Cliente encontrado");
 				GestionDeReservas.ComprobadorHotel(Clientes);
+				GestionDeReservas.HacerReserva(Clientes);
+			
 			} else {
 				System.out.println("Error en la eliminacion");
 			}
@@ -97,51 +102,103 @@ public class GestionDeReservas extends Conector{
 	//Array List de Ver Las habitaciones 
 	
 		
-		public static void mostrarHotel(ArrayList<Hoteles> hoteles) {
-			for (Hoteles hotel : hoteles) {
-				System.out.println("Nombre del hotel "+hotel);
-			}
+	public static void mostrarHotel(ArrayList<Hoteles> hoteles) {
+	    for (Hoteles hotel : hoteles) {
+	        System.out.println("Nombre del hotel: " + hotel.getNombre());
+	    }
+	}
+
+	public static ArrayList<Hoteles> getHoteles() {
+	    ArrayList<Hoteles> hoteles = new ArrayList<Hoteles>();
+	    try {
+	    	Class.forName("com.mysql.cj.jdbc.Driver");
+	    	Connection conexion = DriverManager.getConnection("jdbc:mysql://" + HOST + "/" + BBDD, USERNAME, PASSWORD);
+	    	
+	        Statement st = conexion.createStatement();
+	        ResultSet rs = st.executeQuery("SELECT * FROM hoteles");
+	        Hoteles hotel;
+	        while (rs.next()) {
+	            hotel = new Hoteles();
+	            hotel.setId(rs.getInt("id"));
+	            hotel.setCif(rs.getString("cif"));
+	            hotel.setNombre(rs.getString("nombre"));
+	            hotel.setGerente(rs.getString("gerente"));
+	            hotel.setEstrella(rs.getInt("estrellas"));
+	            hotel.setCompania(rs.getString("compania"));
+	            hoteles.add(hotel);
+	        }
+	        return hoteles;
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-
-		/*public static void mostrarLibro(Hoteles hotel) {
-			System.out.println(hotel);
-		}
-
-		public static void mostrar(String mensaje) {
-			System.out.println(mensaje);
-		}*/
-		
-		
-		public ArrayList<Hoteles> getHoteles() {
-
-			
-			ArrayList<Hoteles> hoteles = new ArrayList<Hoteles>();
-			Statement st;
-			try {
-				
-				st = this.con.prepareStatement(null);
-				ResultSet rs = st.executeQuery("select * from hoteles");
-
-				Hoteles hotel;
-				while (rs.next()) {
-					hotel = new Hoteles();
-					hotel.setId(rs.getInt("id"));
-					hotel.setCif(rs.getString("cif"));
-					hotel.setNombre(rs.getString("nombre"));
-					hotel.setGerente(rs.getString("gerente"));
-					hotel.setEstrella(rs.getInt("estrellas"));
-					hotel.setCompania(rs.getString("compania"));
-					
-					
-					hoteles.add(hotel);
-				}
-				return hoteles;
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			return null;
-		}
+	    return hoteles;
+	}
 	
 	
-}
+	/**************************************************************************************************************************************************************************************/
+	
+	// Insertar reservas
+	public static void HacerReserva(String Reserva) {
+		Reservas reserva=  new Reservas();
+		
+		reserva.setId(Integer.parseInt(JOptionPane.showInputDialog(null, "Introduce la id de la habitacion")));
+		reserva.setId_habitacion(Integer.parseInt(JOptionPane.showInputDialog(null, "Introduce la id de la habitacion")));
+		reserva.setDni(JOptionPane.showInputDialog(null, "Introduce el numero de habitacion"));
+		reserva.setDesde(java.sql.Date.valueOf(JOptionPane.showInputDialog(null, "Introduce la fecha de inicio de reserva")));
+		reserva.setHasta(java.sql.Date.valueOf(JOptionPane.showInputDialog(null, "Introduce la fecha de final de reseva")));
+		
+		
+
+		try {
+			if (insertarReservaEnLaBBDDD(reserva)) {
+				System.out.println("Reserva completada");
+			} else {
+				System.out.println("Error al insertar");
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	private static boolean insertarReservaEnLaBBDDD(Reservas reserva) {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection conexion = DriverManager.getConnection("jdbc:mysql://" + HOST + "/" + BBDD, USERNAME, PASSWORD);
+
+			String sql = "INSERT INTO reservas(id, id_habitacion, dni, desde, hasta) VALUES (?, ?, ?, ?, ?)";
+			PreparedStatement pst = conexion.prepareStatement(sql);
+			pst.setInt(1, reserva.getId());
+			pst.setInt(2, reserva.getId_habitacion());
+			pst.setString(3, reserva.getDni());
+			pst.setDate(4, (Date) reserva.getDesde());
+			pst.setDate(5, (Date) reserva.getHasta());
+			pst.execute();
+			return true;
+		
+
+		} catch (ClassNotFoundException e) {
+			System.out.println("Driver no cargado, falta el jar");
+			e.printStackTrace();
+			return false;
+		} catch (SQLException e) {
+			System.out.println("Fallo en la conexion");
+			e.printStackTrace();
+			return false;
+		}
+
+	}
+		
+	/**********************************************************************************************************************************************************************/	
+		
+	
+	
+	
+	}
+	
+	
+
 	
