@@ -144,9 +144,9 @@ public class GestionDeReservas extends Conector{
 	public static void HacerReserva(String Reserva) {
 		Reservas reserva=  new Reservas();
 		
-		reserva.setId(Integer.parseInt(JOptionPane.showInputDialog(null, "Introduce la id de la habitacion")));
+		reserva.setId(Integer.parseInt(JOptionPane.showInputDialog(null, "Introduce la id de la reserva")));
 		reserva.setId_habitacion(Integer.parseInt(JOptionPane.showInputDialog(null, "Introduce la id de la habitacion")));
-		reserva.setDni(JOptionPane.showInputDialog(null, "Introduce el numero de habitacion"));
+		reserva.setDni(JOptionPane.showInputDialog(null, "Introduce el DNI"));
 		reserva.setDesde(java.sql.Date.valueOf(JOptionPane.showInputDialog(null, "Introduce la fecha de inicio de reserva")));
 		reserva.setHasta(java.sql.Date.valueOf(JOptionPane.showInputDialog(null, "Introduce la fecha de final de reseva")));
 		
@@ -195,7 +195,41 @@ public class GestionDeReservas extends Conector{
 	/**********************************************************************************************************************************************************************/	
 		
 	
+	//eliminar reserva
 	
+	public static void eliminarReserva(){
+		String id=JOptionPane.showInputDialog(null, "Inserte la id del id de la reserva a eliminar");
+		
+		Clientes eliminar = new Clientes();
+		eliminar.setDni(id);			
+		if (eliminarReservaDelaBBDD(id)) {
+			System.out.println("Reserva Eliminada correctamente");
+		} else {
+			System.out.println("Error en la eliminacion");
+		}
+	}
+
+	private static boolean eliminarReservaDelaBBDD(String id) {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection conexion = DriverManager.getConnection("jdbc:mysql://" + HOST + "/" + BBDD, USERNAME, PASSWORD);
+
+			String sql = "DELETE FROM reservas WHERE id = ?";
+			PreparedStatement pst = conexion.prepareStatement(sql);
+			pst.setString(1, id);
+			pst.execute();
+			return true;
+
+		} catch (ClassNotFoundException e) {
+			System.out.println("Driver no cargado, falta el jar");
+			e.printStackTrace();
+			return false;
+		} catch (SQLException e) {
+			System.out.println("Fallo en la conexion");
+			e.printStackTrace();
+			return false;
+		}
+	}
 	
 	}
 	

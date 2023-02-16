@@ -20,8 +20,8 @@ public class Menu {
 	int opcion_menu;
 	do {
 		opcion_menu = Integer.parseInt(JOptionPane.showInputDialog(null,
-				"------MENU-------\n" + OPCION_UNO + ". Registra Clientes\n" + OPCION_DOS + ". Realizar Reservas\n"
-						+ OPCION_TRES + ". Anula la reserva\n"+OPCION_CUATRO+ " Darse de altad en el hotel\n"+ SALIR + ". Cerrar el programa\n" + "Elije una de las opciones"));
+				"---------- Agencia David.SA ------------\n" + OPCION_UNO + ". Registra Clientes\n" + OPCION_DOS + ". Realizar Reservas\n"
+						+ OPCION_TRES + ". Anula la reserva\n"+OPCION_CUATRO+ " Darse de altad en el hotel\n"+ SALIR + ". Cerrar el programa\n\n" + "¿Que desea Hacer?"));
 		//fin menú
 		switch (opcion_menu) {
 		//Registra Clientes
@@ -64,7 +64,8 @@ public class Menu {
 		int opcion_menu;
 		do {
 			opcion_menu = Integer.parseInt(JOptionPane.showInputDialog(null,
-					"------MENU-------\n" + OPCION_UNO + ". Darte de alta clientes\n"+OPCION_DOS+ ". Modificar clientes\n"+OPCION_TRES+ ". Eliminar Clientes \n"+ SALIR + ". Salir De Alta Clientes\n" + "Elije, la opcion a realizar"));
+					"-----------"
+					+ "-MENU CLIENTES----------------\n" + OPCION_UNO + ". Darte de alta clientes\n"+OPCION_DOS+ ". Modificar clientes\n"+OPCION_TRES+ ". Eliminar Clientes \n"+ SALIR + ". Salir De Alta Clientes\n\n" + "¿Que desea Hacer?"));
 			
 			switch (opcion_menu) {
 			// Registrar Clientes
@@ -100,7 +101,7 @@ public class Menu {
 		int opcion_menu;
 		do {
 			opcion_menu = Integer.parseInt(JOptionPane.showInputDialog(null,
-					"------MENU-------\n" + OPCION_UNO + ". Darte de alta Hotel\n"+OPCION_DOS+". Habitaciones\n" + SALIR + ". Salir De Alta Clientes\n" + "Elije, la opcion a realizar"));
+					"-------------MENU HOTELES----------------\n" + OPCION_UNO + ". Darte de alta Hotel\n"+OPCION_DOS+". Habitaciones\n" + SALIR + ". Salir De Alta Clientes\n\n" + "¿Que desea Hacer?"));
 			
 			switch (opcion_menu) {
 			// Registrar Clientes
@@ -154,7 +155,7 @@ public class Menu {
 		int opcion_menu;
 		do {
 			opcion_menu = Integer.parseInt(JOptionPane.showInputDialog(null,
-					"------MENU-------\n" + OPCION_UNO + ". Introduce el DNI para registrar habitación\n"+OPCION_DOS+". Ver hoteles\n" + SALIR + ". Salir\n" + "Elije una de las opciones"));
+					"-------------MENU RESERVAS----------------\n" + OPCION_UNO + ". Introduce el DNI para hacer la reserva\n"+OPCION_DOS+". Ver hoteles\n"+ SALIR + ". Salir\n\n" + " ¿Que desea Hacer?"));
 			//fin menú
 			switch (opcion_menu) {
 			//Comprueba el DNI 
@@ -176,6 +177,7 @@ public class Menu {
 		
 			
 		}
+	
 		
 	public void run() {
 	OpcionesMenuPrincipal();
