@@ -35,7 +35,7 @@ public class Menu {
 			break;
 		//Anula la reserva
 		case OPCION_TRES:
-			
+			Menu.menuReservaEliminar();
 			break;
 		// Se da de alta en el hotel
 		case OPCION_CUATRO: 
@@ -177,7 +177,31 @@ public class Menu {
 		
 			
 		}
-	
+	public static void menuReservaEliminar(){
+		final int OPCION_UNO = 1;
+		
+		final int SALIR = 0;
+		int opcion_menu;
+		do {
+			opcion_menu = Integer.parseInt(JOptionPane.showInputDialog(null,
+					"------MENU-------\n" + OPCION_UNO + ". primera opcion\n" + SALIR + ". Salir\n" + "Elije una de las opciones"));
+			//fin menú
+			switch (opcion_menu) {
+			//Cancela reservas
+			case OPCION_UNO:
+				GestionDeReservas.eliminarReserva();
+				JOptionPane.showInputDialog(null, "Reserva Cancelada");
+				break;
+				
+			case SALIR:
+				break;
+			default:
+				JOptionPane.showMessageDialog(null, "Opcion incorrecta");
+			}
+		} while (opcion_menu != SALIR);
+		
+		
+	}
 		
 	public void run() {
 	OpcionesMenuPrincipal();
