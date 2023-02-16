@@ -6,7 +6,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
@@ -18,8 +17,8 @@ public class GestionDeReservas extends Conector{
 	private static final String USERNAME = "root";
 	private static final String PASSWORD = "";
 	
-	Conector conector = new Conector();
-	
+	static Conector con = new Conector();
+	PreparedStatement ps;
 	
 	/**************************************************************************************************************************************************************************************/
 
@@ -100,44 +99,42 @@ public class GestionDeReservas extends Conector{
 	/**************************************************************************************************************************************************************************************/
 	
 	//Array List de Ver Las habitaciones 
-	
-		
+	/*
 	public static void mostrarHotel(ArrayList<Hoteles> hoteles) {
 	    for (Hoteles hotel : hoteles) {
-	        System.out.println("Nombre del hotel: " + hotel.getNombre());
+	        System.out.println("Nombre del hotel: " + hotel);
 	    }
 	}
 
 	public static ArrayList<Hoteles> getHoteles() {
 	    ArrayList<Hoteles> hoteles = new ArrayList<Hoteles>();
+	    Conexion con = new Conexion(); // Debes definir y crear un objeto "Conexion"
+	    
+	    
 	    try {
-	    	Class.forName("com.mysql.cj.jdbc.Driver");
-	    	Connection conexion = DriverManager.getConnection("jdbc:mysql://" + HOST + "/" + BBDD, USERNAME, PASSWORD);
-	    	
-	        Statement st = conexion.createStatement();
-	        ResultSet rs = st.executeQuery("SELECT * FROM hoteles");
-	        Hoteles hotel;
-	        while (rs.next()) {
-	            hotel = new Hoteles();
-	            hotel.setId(rs.getInt("id"));
-	            hotel.setCif(rs.getString("cif"));
-	            hotel.setNombre(rs.getString("nombre"));
-	            hotel.setGerente(rs.getString("gerente"));
-	            hotel.setEstrella(rs.getInt("estrellas"));
-	            hotel.setCompania(rs.getString("compania"));
+	        con.conectar();
+	        PreparedStatement ps = con.getCon().prepareStatement("SELECT * from hoteles");
+	        ResultSet res = ps.executeQuery();
+	        while (res.next()) {
+	            Hoteles hotel = new Hoteles();
+	            hotel.setId(res.getInt("id"));
+	            hotel.setCif(res.getString("cif"));
+	            hotel.setNombre(res.getString("nombre"));
+	            hotel.setGerente(res.getString("gerente"));
+	            hotel.setEstrella(res.getInt("estrellas"));
+	            hotel.setCompania(res.getString("compania"));
 	            hoteles.add(hotel);
 	        }
-	        return hoteles;
 	    } catch (SQLException e) {
 	        e.printStackTrace();
 	    } catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	        e.printStackTrace();
+	    } finally {
+	        con.cerrar(); // Es importante cerrar la conexión, el PreparedStatement y el ResultSet
+	    }
 	    return hoteles;
 	}
-	
-	
+	*/
 	/**************************************************************************************************************************************************************************************/
 	
 	// Insertar reservas
