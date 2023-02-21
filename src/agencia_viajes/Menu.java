@@ -2,6 +2,8 @@ package agencia_viajes;
 
 
 
+import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
 
 /**@DavidMangas **/
@@ -163,9 +165,9 @@ public class Menu {
 				GestionDeReservas.ComprobadorDNI(null);
 				
 			case OPCION_DOS:
-				
-				/*ArrayList<Hoteles> TodosLosHoteles = new ArrayList<Hoteles>();
-				TodosLosHoteles = GestionDeReservas.getHoteles();*/
+			 //ArrayList<Hoteles> hoteles = new ArrayList<Hoteles>();
+				//Array List Hoteles
+			//GestionDeReservas.mostrarHotel( );
 				
 				break;
 			case SALIR:
@@ -184,7 +186,7 @@ public class Menu {
 		int opcion_menu;
 		do {
 			opcion_menu = Integer.parseInt(JOptionPane.showInputDialog(null,
-					"------MENU-------\n" + OPCION_UNO + ". primera opcion\n" + SALIR + ". Salir\n" + "Elije una de las opciones"));
+					"------Menu Eliminar Reserva-------\n" + OPCION_UNO + ". Eliminar reserva\n" + SALIR + ". Salir\n\n" + "¿Que desea Hacer?"));
 			//fin menú
 			switch (opcion_menu) {
 			//Cancela reservas
@@ -202,6 +204,8 @@ public class Menu {
 		
 		
 	}
+	
+	
 		
 	public void run() {
 	OpcionesMenuPrincipal();

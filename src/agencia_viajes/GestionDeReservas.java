@@ -99,17 +99,16 @@ public class GestionDeReservas extends Conector{
 	/**************************************************************************************************************************************************************************************/
 	
 	//Array List de Ver Las habitaciones 
-	/*
+	
 	public static void mostrarHotel(ArrayList<Hoteles> hoteles) {
-	    for (Hoteles hotel : hoteles) {
+	    for (Hoteles hotel: hoteles) {
 	        System.out.println("Nombre del hotel: " + hotel);
 	    }
 	}
 
 	public static ArrayList<Hoteles> getHoteles() {
 	    ArrayList<Hoteles> hoteles = new ArrayList<Hoteles>();
-	    Conexion con = new Conexion(); // Debes definir y crear un objeto "Conexion"
-	    
+   
 	    
 	    try {
 	        con.conectar();
@@ -127,14 +126,12 @@ public class GestionDeReservas extends Conector{
 	        }
 	    } catch (SQLException e) {
 	        e.printStackTrace();
-	    } catch (ClassNotFoundException e) {
-	        e.printStackTrace();
 	    } finally {
-	        con.cerrar(); // Es importante cerrar la conexión, el PreparedStatement y el ResultSet
+	        con.cerrar();
 	    }
 	    return hoteles;
 	}
-	*/
+	
 	/**************************************************************************************************************************************************************************************/
 	
 	// Insertar reservas
