@@ -165,9 +165,10 @@ public class Menu {
 				GestionDeReservas.ComprobadorDNI(null);
 				
 			case OPCION_DOS:
-			 //ArrayList<Hoteles> hoteles = new ArrayList<Hoteles>();
-				//Array List Hoteles
-			//GestionDeReservas.mostrarHotel( );
+				
+			 ArrayList<Hoteles> hoteles = new ArrayList<Hoteles>();
+			 hoteles= GestionDeReservas.getHoteles();
+			GestionDeReservas.mostrarHotel(hoteles);
 				
 				break;
 			case SALIR:

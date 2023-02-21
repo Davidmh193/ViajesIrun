@@ -98,18 +98,19 @@ public class GestionDeReservas extends Conector{
 	
 	/**************************************************************************************************************************************************************************************/
 	
+	
 	//Array List de Ver Las habitaciones 
 	
 	public static void mostrarHotel(ArrayList<Hoteles> hoteles) {
 	    for (Hoteles hotel: hoteles) {
-	        System.out.println("Nombre del hotel: " + hotel);
+	        System.out.println("ID del hotel: " + hotel.getId()+ " ||  Cif Del hotel: "+ hotel.getCif()+" ||  Nombre del Hotel"+hotel.getNombre()+" ||  Gerente: "+ hotel.getGerente()+" ||  Numero de Estrellas: "+hotel.getEstrella()+" ||  Compania: "+hotel.getCompania());
 	    }
 	}
 
 	public static ArrayList<Hoteles> getHoteles() {
 	    ArrayList<Hoteles> hoteles = new ArrayList<Hoteles>();
+	   
    
-	    
 	    try {
 	        con.conectar();
 	        PreparedStatement ps = con.getCon().prepareStatement("SELECT * from hoteles");
@@ -131,6 +132,7 @@ public class GestionDeReservas extends Conector{
 	    }
 	    return hoteles;
 	}
+	
 	
 	/**************************************************************************************************************************************************************************************/
 	
